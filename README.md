@@ -1,8 +1,21 @@
 # AcceptLanguageHeader
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/accept_language_header`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Usage
 
-TODO: Delete this and the text above, and describe your gem
+```ruby
+  accept_header = AcceptLanguageHeader.parse('zh-CN,zh-HK;q=0.9,zh;q=0.7,zh-TW;q=0.6,ja;q=0.4,en-US;q=0.3,en;q=0.1')
+  accept_header.lookup(['ja', 'br', 'fr', 'de', 'en']) #=> 'ja'
+```
+
+## SEE ALSO
+
+### [http\_accept\_language](https://github.com/iain/http_accept_language)
+
+I does not want to use it as Rails plugin on Rails environment.
+
+### [Rack::Locale](https://github.com/rack/rack-contrib/blob/master/lib/rack/contrib/locale.rb)
+
+I does not want to use it as Rack middleware.
 
 ## Installation
 
@@ -20,10 +33,6 @@ Or install it yourself as:
 
     $ gem install accept_language_header
 
-## Usage
-
-TODO: Write usage instructions here
-
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake false` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -32,5 +41,5 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/accept_language_header.
+Bug reports and pull requests are welcome on GitHub at https://github.com/walf443/accept_language_header.
 

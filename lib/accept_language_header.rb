@@ -1,5 +1,6 @@
 require 'accept_language_header/version'
 require 'accept_language_header/locale'
+require 'accept_language_header/collection'
 module AcceptLanguageHeader
   def self.parse(header)
     locales = header.split(/,(?:\s*)/)
