@@ -3,6 +3,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'accept_language_header/version'
 
+# rubocop:disable all
 Gem::Specification.new do |spec|
   spec.name          = 'accept_language_header'
   spec.version       = AcceptLanguageHeader::VERSION
