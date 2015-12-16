@@ -1,4 +1,5 @@
 module AcceptLanguageHeader
+  # collection of Locale. locales order should sorted by priority weight.
   class Collection
     def initialize(locales)
       @locales = locales
@@ -9,10 +10,10 @@ module AcceptLanguageHeader
     end
 
     def lookup(availables)
-      result = @locales.detect { |locale| availables.detect { |expected| locale.match?(expected) } }
-      if result
-        availables.detect { |expected| result.match?(expected) }
+      result = @locales.detect do |locale|
+        availables.detect { |expected| locale.match?(expected) }
       end
+      availables.detect { |expected| result.match?(expected) } if result
     end
 
     def to_s

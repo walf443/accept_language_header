@@ -10,11 +10,19 @@ RSpec.describe AcceptLanguageHeader do
 
     context 'basic' do
       let(:header) { 'ja,en;q=0.8,en-US;q=0.6' }
-      it { is_expected.to eq(AcceptLanguageHeader::Collection.new([ah_locale('ja', 1.0), ah_locale('en', 0.8), ah_locale('en-US', 0.6)])) }
+      it do
+        is_expected.to eq(
+          AcceptLanguageHeader::Collection.new([
+            ah_locale('ja', 1.0),
+            ah_locale('en', 0.8),
+            ah_locale('en-US', 0.6)
+          ])
+        )
+      end
     end
 
     context 'basic2' do
-      let(:header) { 'zh-CN,zh-HK;q=0.9,zh;q=0.7,zh-TW;q=0.6,ja;q=0.4,en-US;q=0.3,en;q=0.1' }
+      let(:header) { 'zh-CN,zh-HK;q=0.9,zh;q=0.7,zh-TW;q=0.6,ja;q=0.4' }
       it do
         is_expected.to eq(
           AcceptLanguageHeader::Collection.new([
@@ -22,9 +30,7 @@ RSpec.describe AcceptLanguageHeader do
             ah_locale('zh-HK', 0.9),
             ah_locale('zh', 0.7),
             ah_locale('zh-TW', 0.6),
-            ah_locale('ja', 0.4),
-            ah_locale('en-US', 0.3),
-            ah_locale('en', 0.1),
+            ah_locale('ja', 0.4)
           ])
         )
       end
@@ -32,13 +38,27 @@ RSpec.describe AcceptLanguageHeader do
 
     context 'invalid order header' do
       let(:header) { 'ja,en;q=0.5,en-US;q=0.6' }
-      it { is_expected.to eq(AcceptLanguageHeader::Collection.new([ah_locale('ja', 1.0), ah_locale('en-US', 0.6), ah_locale('en', 0.5)])) }
+      it do
+        is_expected.to eq(
+          AcceptLanguageHeader::Collection.new([
+            ah_locale('ja', 1.0),
+            ah_locale('en-US', 0.6),
+            ah_locale('en', 0.5)
+          ])
+        )
+      end
     end
   end
 
   describe '#lookup' do
     subject { header.lookup(availables) }
-    let(:header) { AcceptLanguageHeader.parse('zh-CN,zh-HK;q=0.9,zh;q=0.7,zh-TW;q=0.6,ja;q=0.4,en-US;q=0.3,en;q=0.1') }
+    let(:target) do
+      'zh-CN,zh;q=0.7,zh-TW;q=0.6,en-US;q=0.3,en;q=0.1'
+    end
+
+    let(:header) do
+      AcceptLanguageHeader.parse(target)
+    end
 
     context 'when availables is "zh-CN"' do
       let(:availables) { ['zh-CN', 'zh', 'en'] }

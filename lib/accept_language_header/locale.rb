@@ -1,4 +1,5 @@
 module AcceptLanguageHeader
+  # base class for locale
   class Locale
     attr_reader :locale, :weight
 
@@ -21,6 +22,10 @@ module AcceptLanguageHeader
 
     def to_s
       "#{locale};q=#{weight}"
+    end
+
+    def inspect
+      "#<#{self.class}: #{self}>"
     end
   end
 end
