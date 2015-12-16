@@ -10,10 +10,14 @@ module AcceptLanguageHeader
     end
 
     def lookup(availables)
-      result = @locales.detect do |locale|
+      result = lookup_locale(availables)
+      availables.detect { |expected| result.match?(expected) } if result
+    end
+
+    def lookup_locale(availables)
+      @locales.detect do |locale|
         availables.detect { |expected| locale.match?(expected) }
       end
-      availables.detect { |expected| result.match?(expected) } if result
     end
 
     def to_s
