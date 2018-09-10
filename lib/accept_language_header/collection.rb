@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AcceptLanguageHeader
   # collection of Locale. locales order should sorted by priority weight.
   class Collection

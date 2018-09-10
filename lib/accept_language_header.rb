@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'accept_language_header/version'
 require 'accept_language_header/locale'
 require 'accept_language_header/collection'
@@ -7,22 +9,24 @@ require 'accept_language_header/collection'
 #   # => #<AcceptLanguageHeader::Collection ...>
 #
 module AcceptLanguageHeader
-  def self.parse(header)
-    locales = header.split(/,(?:\s*)/)
-    result = []
-    locales.each do |locale|
-      result << parse_locale(locale)
+  class << self
+    def parse(header)
+      locales = header.split(/,(?:\s*)/)
+      result = []
+      locales.each do |locale|
+        result << parse_locale(locale)
+      end
+
+      Collection.new(result.sort)
     end
 
-    Collection.new(result.sort)
-  end
+    private
 
-  private
-
-  def self.parse_locale(locale)
-    lang_range, weight_str = locale.split(/\s*;\s*/)
-    weight = 1.0
-    weight = Regexp.last_match[1].to_f if weight_str =~ /q=([0-9\.]+)/i
-    Locale.new(lang_range, weight)
+    def parse_locale(locale)
+      lang_range, weight_str = locale.split(/\s*;\s*/)
+      weight = 1.0
+      weight = Regexp.last_match[1].to_f if weight_str =~ /q=([0-9\.]+)/i
+      Locale.new(lang_range, weight)
+    end
   end
 end

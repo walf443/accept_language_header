@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe AcceptLanguageHeader do
@@ -13,10 +15,10 @@ RSpec.describe AcceptLanguageHeader do
       it do
         is_expected.to eq(
           AcceptLanguageHeader::Collection.new([
-            ah_locale('ja', 1.0),
-            ah_locale('en', 0.8),
-            ah_locale('en-US', 0.6)
-          ])
+                                                 ah_locale('ja', 1.0),
+                                                 ah_locale('en', 0.8),
+                                                 ah_locale('en-US', 0.6)
+                                               ])
         )
       end
     end
@@ -26,12 +28,12 @@ RSpec.describe AcceptLanguageHeader do
       it do
         is_expected.to eq(
           AcceptLanguageHeader::Collection.new([
-            ah_locale('zh-CN', 1.0),
-            ah_locale('zh-HK', 0.9),
-            ah_locale('zh', 0.7),
-            ah_locale('zh-TW', 0.6),
-            ah_locale('ja', 0.4)
-          ])
+                                                 ah_locale('zh-CN', 1.0),
+                                                 ah_locale('zh-HK', 0.9),
+                                                 ah_locale('zh', 0.7),
+                                                 ah_locale('zh-TW', 0.6),
+                                                 ah_locale('ja', 0.4)
+                                               ])
         )
       end
     end
@@ -41,10 +43,10 @@ RSpec.describe AcceptLanguageHeader do
       it do
         is_expected.to eq(
           AcceptLanguageHeader::Collection.new([
-            ah_locale('ja', 1.0),
-            ah_locale('en-US', 0.6),
-            ah_locale('en', 0.5)
-          ])
+                                                 ah_locale('ja', 1.0),
+                                                 ah_locale('en-US', 0.6),
+                                                 ah_locale('en', 0.5)
+                                               ])
         )
       end
     end
