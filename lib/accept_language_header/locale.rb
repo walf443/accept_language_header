@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AcceptLanguageHeader
   # base class for locale
   class Locale

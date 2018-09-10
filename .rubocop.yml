@@ -1,0 +1,31 @@
+# See default settings https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
+AllCops:
+  TargetRubyVersion: 2.5
+  DisplayCopNames: true
+
+Rails:
+  Enabled: false
+
+# Avoid classes longer than 300 lines of code.
+Metrics/ClassLength:
+  Enabled: true
+  Max: 300
+
+# Limit lines to 120 characters.
+Metrics/LineLength:
+  Enabled: true
+  Max: 150
+
+# Avoid methods longer than 55 lines of code
+Metrics/MethodLength:
+  Enabled: true
+  Max: 55
+
+Metrics/BlockLength:
+  Enabled: true
+  Max: 70
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+Metrics/AbcSize:
+  Max: 30
